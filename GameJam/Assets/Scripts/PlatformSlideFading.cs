@@ -23,6 +23,11 @@ public class PlatformSlideFading : PlatformSlide
     private void OnFaded()
     {
         col.isTrigger = true;
+        if (player)
+        {
+            player.transform.SetParent(null);
+            player = null;
+        }
     }
 
     private void OnUnfadeStart()
@@ -99,8 +104,9 @@ public class PlatformSlideFading : PlatformSlide
         sprite.color = tmp;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
+        base.OnCollisionEnter2D(collision);
         if (!fadeOverTime && !fading && collision.gameObject.tag == "Player")
         {
             fading = true;
