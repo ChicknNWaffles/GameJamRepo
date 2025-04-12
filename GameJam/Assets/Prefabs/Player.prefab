@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7046027780557025239}
   - component: {fileID: 8008841264347295074}
   - component: {fileID: 6531118364502515992}
-  - component: {fileID: 8799578766372795254}
+  - component: {fileID: 5443577526476607744}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -95,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5700861753030460900}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -113,7 +113,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6531118364502515992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,10 +126,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60c18fd843f4924d9ebb9e04508000a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 10
   JumpHeight: 1
---- !u!60 &8799578766372795254
-PolygonCollider2D:
+  CanGoLeft: 1
+  CanGoRight: 1
+  CanGoUp: 1
+  CanGoDown: 1
+  CanJump: 1
+--- !u!70 &5443577526476607744
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,20 +165,6 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
-  m_UseDelaunayMesh: 0
+  m_Offset: {x: 0, y: -0.00237235}
+  m_Size: {x: 0.9999998, y: 0.99525815}
+  m_Direction: 0
