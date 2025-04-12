@@ -59,8 +59,16 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Jump() { 
-
+    void Jump() {
+        // if on the ground and in from side mode
+        if (OnTheGround && !Mode) { 
+            float x = Target.x;
+            float y = Target.y;
+            // move the target up
+            float curZ = Target.z;
+            float newZ = curZ - JumpHeight;
+            Target = new (x, y, newZ);
+        }
     }
 
     void GoLeft() { 
