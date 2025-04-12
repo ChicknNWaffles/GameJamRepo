@@ -7,6 +7,7 @@ public class PlayerPhysics : MonoBehaviour
     public float accelerationSpeed = 10f;
     public float maxSpeed = 10f;
     public float jumpForce = 10f;
+    public float jumpUpMult = 2f;
     public ForceMode2D forceMode;
 
     public ContactFilter2D groundFilter;
@@ -15,8 +16,7 @@ public class PlayerPhysics : MonoBehaviour
     Vector3 moveDir;
     Rigidbody2D rb;
     Collider2D col;
-
-    List<ContactPoint2D> debugList = new();
+    float flipScale;
 
     float SqrMaxSpeed
     {
@@ -39,6 +39,7 @@ public class PlayerPhysics : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             moveDir = moveDir + Vector3.left;
+            transform.localScale = new Vector2(-flipScale, transform.localScale.y);
         }
         if (Input.GetKey(KeyCode.S))
         {
@@ -47,6 +48,7 @@ public class PlayerPhysics : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             moveDir = moveDir + Vector3.right;
+            transform.localScale = new Vector2(flipScale, transform.localScale.y);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -58,7 +60,7 @@ public class PlayerPhysics : MonoBehaviour
     {
         if (!IsGrounded) return;
 
-        moveDir += Vector3.up;
+        moveDir += Vector3.up * jumpUpMult;
         rb.AddForce(moveDir.normalized * jumpForce, ForceMode2D.Impulse);
     }
 
@@ -67,14 +69,11 @@ public class PlayerPhysics : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        flipScale = transform.localScale.x;
     }
 
     private void FixedUpdate()
     {
-        
-
-        //GetInput();
-
         if (rb.velocity.sqrMagnitude < SqrMaxSpeed && IsGrounded)
         {
             print($"{IsGrounded} {moveDir}");
