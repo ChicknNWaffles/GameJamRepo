@@ -10,12 +10,12 @@ public class Player : MonoBehaviour
     public float JumpHeight;
     private bool Jumping;
     private bool Mode; // false = side, true = top
-    private bool CanGoLeft = true;
-    private bool CanGoRight = true;
-    private bool CanGoUp = true;
-    private bool CanGoDown = true;
-    private bool CanJump = true;
-    private Transform transform;
+    public bool CanGoLeft = true;
+    public bool CanGoRight = true;
+    public bool CanGoUp = true;
+    public bool CanGoDown = true;
+    public bool CanJump = true;
+    private Rigidbody2D rb;
     private int Health;
     private Vector3 Target;
     private bool OnTheGround = false;
@@ -31,9 +31,8 @@ public class Player : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        transform = gameObject.transform;
         Target = transform.position;
-        
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -45,7 +44,8 @@ public class Player : MonoBehaviour
         // respond to player input
         Pathfind();
         // move the player towards the target
-        transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
+        Vector3 dir = (Target - transform.position).normalized;
+        rb.MovePosition(transform.position + (dir * Speed * Time.deltaTime));
         // if we've reached the target, and the player is jumping, stop jumping, and let gravity take over
         if (Jumping && transform.position == Target) {
             Jumping = false;
@@ -56,9 +56,8 @@ public class Player : MonoBehaviour
     #region movement
 
     void Pathfind() {
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D)) {
-            ResetTarget(); 
-        }else if (Input.GetKey(KeyCode.W)) {
+        ResetTarget();
+        if (Input.GetKey(KeyCode.W)) {
             GoUp();
         }else if (Input.GetKey(KeyCode.A)) {
             GoLeft();
@@ -77,19 +76,15 @@ public class Player : MonoBehaviour
 
     void CheckIfPanning() {
         if (Game.Instance.camera.transform.position.x <= 0 && transform.position.x >= Game.Instance.camera.transform.position.x - 3) {
-            print("camera all the way left, player in right");
             PanningLeft = false;
             PanningRight = true;
         }else if (Game.Instance.camera.transform.position.x >= Game.Instance.LevelWidth && transform.position.x <= Game.Instance.camera.transform.position.x + 3) {
-            print("camera all the way right, player in left");
             PanningLeft = true;
             PanningRight = false;
         }else if (Game.Instance.camera.transform.position.x <= 0 || Game.Instance.camera.transform.position.x >= Game.Instance.LevelWidth){
-            print("camera all the way in one extreem, but player not in oposite side");
             PanningLeft = false;
             PanningRight = false;
         }else{
-            print("camera not at extreme");
             PanningLeft = true;
             PanningRight = true;
         }
@@ -126,7 +121,7 @@ public class Player : MonoBehaviour
             float y = Target.y;
             float z = Target.z;
             // move the target to the left
-            float curX = Target.x;
+            float curX = transform.position.x;
             float newX = curX - 10;
             Target = new(newX, y, z);
             if (PanningLeft){
@@ -142,7 +137,7 @@ public class Player : MonoBehaviour
             float y = Target.y;
             float z = Target.z;
             // move the target to the right
-            float curX = Target.x;
+            float curX = transform.position.x;
             float newX = curX + 10;
             Target = new(newX, y, z);
             if (PanningRight) {
@@ -156,7 +151,7 @@ public class Player : MonoBehaviour
             float x = Target.x;
             float z = Target.z;
             // move the target up
-            float curY = Target.y;
+            float curY = transform.position.y;
             float newY = curY + 10;
             Target = new(x, newY, z);
         }
@@ -167,7 +162,7 @@ public class Player : MonoBehaviour
             float x = Target.x;
             float z = Target.z;
             // move the target down
-            float curY = Target.y;
+            float curY = transform.position.y;
             float newY = curY - 10;
             Target = new(x, newY, z);
         }
@@ -183,26 +178,58 @@ public class Player : MonoBehaviour
     #region collision
 
     private void OnCollisionEnter2D(Collision2D collision){
-        if (collision.gameObject.tag == "collide") {
+        if (collision.gameObject.tag == "Collide") {
             // if colliding on the left
-            if (transform.position.x <= collision.gameObject.transform.position.x) {
+            if (transform.position.x < collision.GetContact(0).point.x && collision.GetContact(0).point.y > transform.position.y - 0.7f) {
                 // disable movement to the left
                 CanGoLeft = false;
             }
             // if colliding on the right
-            else if (transform.position.x > collision.gameObject.transform.position.x) {
+            else if (transform.position.x > collision.GetContact(0).point.x && collision.GetContact(0).point.y > transform.position.y - 0.7f) {
                 // disable movement to the right
                 CanGoRight = false;
             }
             // if colliding above
-            else if (transform.position.y >= collision.gameObject.transform.position.y) {
+            else if (transform.position.y > collision.GetContact(0).point.y) {
                 // disable movement upward
                 CanGoUp = false;
                 // disable jumping
                 CanJump = false;
             }
             // if colliding below
-            else if (transform.position.y < collision.gameObject.transform.position.y) {
+            else if (transform.position.y < collision.GetContact(0).point.y) {
+                // disable movement downward
+                CanGoDown = false;
+                // let the program know you're on the ground if in side mode
+                if (!Mode) {
+                    OnTheGround = true;
+                }
+            }
+            Debug.Log("Collide " + collision.gameObject.name);
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision){
+        if (collision.gameObject.tag == "Collide") {
+            // if colliding on the left
+            if (transform.position.x < collision.GetContact(0).point.x && collision.GetContact(0).point.y > transform.position.y - 0.7f) {
+                // disable movement to the left
+                CanGoLeft = false;
+            }
+            // if colliding on the right
+            else if (transform.position.x > collision.GetContact(0).point.x && collision.GetContact(0).point.y > transform.position.y - 0.7f) {
+                // disable movement to the right
+                CanGoRight = false;
+            }
+            // if colliding above
+            else if (transform.position.y > collision.GetContact(0).point.y) {
+                // disable movement upward
+                CanGoUp = false;
+                // disable jumping
+                CanJump = false;
+            }
+            // if colliding below
+            else if (transform.position.y < collision.GetContact(0).point.y) {
                 // disable movement downward
                 CanGoDown = false;
                 // let the program know you're on the ground if in side mode
@@ -215,36 +242,16 @@ public class Player : MonoBehaviour
 
 
     private void OnCollisionExit2D(Collision2D collision){
-        if (collision.gameObject.tag == "collide") {
-            // if colliding on the left
-            if (transform.position.x <= collision.gameObject.transform.position.x) {
-                //enable movement to the left
-                CanGoLeft = true;
-            }
-            // if colliding on the right
-            else if (transform.position.x > collision.gameObject.transform.position.x) {
-                //enable movement to the right
-                CanGoRight = true;
-            }
-            // if colliding above
-            else if (transform.position.y >= collision.gameObject.transform.position.y) {
-                //enable movement upward
-                CanGoUp = true;
-                //enable jumping
-                CanJump = true;
-            }
-            // if colliding below
-            else if (transform.position.y < collision.gameObject.transform.position.y) {
-                //enable movement downward
-                CanGoDown = true;
-                // let the program know you're not on the ground if in side mode
-                if (!Mode)
-                {
-                    OnTheGround = false;
-                }
-            }
+        // set everything to be able to move and let
+        // OnCollisionStay fix it if that was wrong
+        CanGoLeft = true;
+        CanGoRight = true;
+        CanGoUp = true;
+        CanJump = true;
+        CanGoDown = true;
+        if (!Mode){
+            OnTheGround = false;
         }
-        
     }
 
     #endregion
