@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private Transform transform;
     private int Health;
     private Vector3 Target;
-    private bool OnTheGround = true;
+    private bool OnTheGround = false;
 
     private void Awake() {
         if (Instance == null) {
@@ -35,10 +35,10 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        // respond to player input
-        Pathfind();
         // apply gravity
         Gravity();
+        // respond to player input
+        Pathfind();
         // move the player towards the target
         transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
         // if we've reached the target, and the player is jumping, stop jumping, and let gravity take over
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     void Pathfind() {
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D)) {
-            ResetTarget();
+            ResetTarget(); 
         }else if (Input.GetKey(KeyCode.W)) {
             GoUp();
         }else if (Input.GetKey(KeyCode.A)) {
@@ -61,9 +61,11 @@ public class Player : MonoBehaviour
             GoDown();
         }else if (Input.GetKey(KeyCode.D)) {
             GoRight();
-        }else if (Input.GetKeyDown(KeyCode.Space)){
+        }
+        if (Input.GetKeyDown(KeyCode.Space)){
             Jump();
-        }else if (Input.GetKeyDown(KeyCode.Return)){
+        }
+        if (Input.GetKeyDown(KeyCode.Return)){
             print("shoot");
         }
     }
@@ -71,25 +73,26 @@ public class Player : MonoBehaviour
     void Gravity() {
         // if not currently on our way up with a jump, not in top down mode, and not currently
         // in contact with the ground
-        if (!Jumping && Mode && !OnTheGround) {
+        if (!Jumping && !Mode && !OnTheGround) {
+            print("applying gravity");
             float x = Target.x;
-            float y = Target.y;
+            float z = Target.z;
             // move the target down
-            float curZ = Target.z;
-            float newZ = curZ + 1;
-            Target = new (x, y, newZ);
+            float curY = Target.y;
+            float newY = curY - 10;
+            Target = new(x, newY, z);
         }
     }
 
     void Jump() {
         // if on the ground and in from side mode and if can jump
-        if (OnTheGround && !Mode && CanJump) { 
+        if (OnTheGround && !Mode && CanJump) {
             float x = Target.x;
-            float y = Target.y;
+            float z = Target.z;
             // move the target up
-            float curZ = Target.z;
-            float newZ = curZ - JumpHeight;
-            Target = new (x, y, newZ);
+            float curY = Target.y;
+            float newY = curY + JumpHeight;
+            Target = new(x, newY, z);
             Jumping = true;
         }
     }
@@ -123,8 +126,8 @@ public class Player : MonoBehaviour
             float x = Target.x;
             float z = Target.z;
             // move the target up
-            float curY = Target.x;
-            float newY = curY - 10;
+            float curY = Target.y;
+            float newY = curY + 10;
             Target = new(x, newY, z);
         }
     }
@@ -134,8 +137,8 @@ public class Player : MonoBehaviour
             float x = Target.x;
             float z = Target.z;
             // move the target down
-            float curY = Target.x;
-            float newY = curY + 10;
+            float curY = Target.y;
+            float newY = curY - 10;
             Target = new(x, newY, z);
         }
     }
@@ -163,14 +166,14 @@ public class Player : MonoBehaviour
                 CanGoRight = false;
             }
             // if colliding above
-            else if (transform.position.y <= collision.gameObject.transform.position.y) {
+            else if (transform.position.y >= collision.gameObject.transform.position.y) {
                 // disable movement upward
                 CanGoUp = false;
                 // disable jumping
                 CanJump = false;
             }
             // if colliding below
-            else if (transform.position.y > collision.gameObject.transform.position.y) {
+            else if (transform.position.y < collision.gameObject.transform.position.y) {
                 // disable movement downward
                 CanGoDown = false;
                 // let the program know you're on the ground if in side mode
@@ -195,14 +198,14 @@ public class Player : MonoBehaviour
                 CanGoRight = true;
             }
             // if colliding above
-            else if (transform.position.y <= collision.gameObject.transform.position.y) {
+            else if (transform.position.y >= collision.gameObject.transform.position.y) {
                 //enable movement upward
                 CanGoUp = true;
                 //enable jumping
                 CanJump = true;
             }
             // if colliding below
-            else if (transform.position.y > collision.gameObject.transform.position.y) {
+            else if (transform.position.y < collision.gameObject.transform.position.y) {
                 //enable movement downward
                 CanGoDown = true;
                 // let the program know you're not on the ground if in side mode
