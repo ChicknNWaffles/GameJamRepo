@@ -24,6 +24,7 @@ public class DamageVolume : MonoBehaviour
     void OnStartDamage(GameObject damaged)
     {
         print($"Applying {damagePerTick} damage");
+        damaged.GetComponent<IDamageable>().TakeDamage(damagePerTick);
         nextDamageTick = Time.time + damageDelay;
     }
 
@@ -32,6 +33,7 @@ public class DamageVolume : MonoBehaviour
         if (Time.time > nextDamageTick)
         {
             print($"Applying {damagePerTick} damage");
+            damaged.GetComponent<IDamageable>().TakeDamage(damagePerTick);
             nextDamageTick = Time.time + damageDelay;
         }
     }

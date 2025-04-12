@@ -36,15 +36,15 @@ public class PlayerPhysics : MonoBehaviour
         {
             //moveDir = moveDir + Vector3.up;
         }
-        else if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             moveDir = moveDir + Vector3.left;
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             //moveDir = moveDir + Vector3.down;
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             moveDir = moveDir + Vector3.right;
         }
