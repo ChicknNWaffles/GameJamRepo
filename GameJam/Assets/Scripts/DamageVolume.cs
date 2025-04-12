@@ -38,7 +38,7 @@ public class DamageVolume : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.GetComponent<IDamageable>() != null)
         {
             OnStartDamage(collision.gameObject);
         }
@@ -46,7 +46,7 @@ public class DamageVolume : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.GetComponent<IDamageable>() != null)
         {
             OnDamageTick(collision.gameObject);
         }
@@ -54,7 +54,7 @@ public class DamageVolume : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.GetComponent<IDamageable>() != null)
         {
             OnStartDamage(collision.gameObject);
         }
@@ -62,7 +62,7 @@ public class DamageVolume : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.GetComponent<IDamageable>() != null)
         {
             OnDamageTick(collision.gameObject);
         }
