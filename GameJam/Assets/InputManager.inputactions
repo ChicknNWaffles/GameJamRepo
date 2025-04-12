@@ -1,8 +1,8 @@
 {
-    "name": "Input Manager",
+    "name": "InputManager",
     "maps": [
         {
-            "name": "New action map",
+            "name": "Standard",
             "id": "66ac510f-422c-49e9-8f42-a922c3529751",
             "actions": [
                 {

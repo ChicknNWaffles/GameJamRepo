@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        // respond to player input
+        Pathfind();
         // apply gravity
         Gravity();
         // move the player towards the target
@@ -43,9 +45,29 @@ public class Player : MonoBehaviour
         if (Jumping && transform.position == Target) {
             Jumping = false;
         }
+
     }
 
     #region movement
+
+    void Pathfind() {
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D)) {
+            ResetTarget();
+        }else if (Input.GetKey(KeyCode.W)) {
+            GoUp();
+        }else if (Input.GetKey(KeyCode.A)) {
+            GoLeft();
+        }else if (Input.GetKey(KeyCode.S)) {
+            GoDown();
+        }else if (Input.GetKey(KeyCode.D)) {
+            GoRight();
+        }else if (Input.GetKeyDown(KeyCode.Space)){
+            Jump();
+        }else if (Input.GetKeyDown(KeyCode.Return)){
+            print("shoot");
+        }
+    }
+
     void Gravity() {
         // if not currently on our way up with a jump, not in top down mode, and not currently
         // in contact with the ground
@@ -68,6 +90,7 @@ public class Player : MonoBehaviour
             float curZ = Target.z;
             float newZ = curZ - JumpHeight;
             Target = new (x, y, newZ);
+            Jumping = true;
         }
     }
 
@@ -79,6 +102,7 @@ public class Player : MonoBehaviour
             float curX = Target.x;
             float newX = curX - 10;
             Target = new(newX, y, z);
+            print("OldX = " + curX + ", NewX = " + newX);
         }
     }
 
@@ -90,7 +114,35 @@ public class Player : MonoBehaviour
             float curX = Target.x;
             float newX = curX + 10;
             Target = new(newX, y, z);
+            print("OldX = " + curX + ", NewX = " + newX);
         }
+    }
+
+    void GoUp() { 
+        if (CanGoUp && Mode) {
+            float x = Target.x;
+            float z = Target.z;
+            // move the target up
+            float curY = Target.x;
+            float newY = curY - 10;
+            Target = new(x, newY, z);
+        }
+    }
+
+    void GoDown() { 
+        if (CanGoDown && Mode) {
+            float x = Target.x;
+            float z = Target.z;
+            // move the target down
+            float curY = Target.x;
+            float newY = curY + 10;
+            Target = new(x, newY, z);
+        }
+    }
+
+    void ResetTarget() {
+        print("resetting target");
+        Target = transform.position;
     }
 
     #endregion
@@ -133,24 +185,24 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision){
         if (collision.gameObject.tag == "collide") {
             // if colliding on the left
-            if (position.x <= collision.gameObject.transform.position.x) {
+            if (transform.position.x <= collision.gameObject.transform.position.x) {
                 //enable movement to the left
                 CanGoLeft = true;
             }
             // if colliding on the right
-            else if (position.x > collision.gameObject.transform.position.x) {
+            else if (transform.position.x > collision.gameObject.transform.position.x) {
                 //enable movement to the right
                 CanGoRight = true;
             }
             // if colliding above
-            else if (position.y <= collision.gameObject.transform.position.y) {
+            else if (transform.position.y <= collision.gameObject.transform.position.y) {
                 //enable movement upward
                 CanGoUp = true;
                 //enable jumping
                 CanJump = true;
             }
             // if colliding below
-            else if (position.y > collision.gameObject.transform.position.y) {
+            else if (transform.position.y > collision.gameObject.transform.position.y) {
                 //enable movement downward
                 CanGoDown = true;
                 // let the program know you're not on the ground if in side mode
