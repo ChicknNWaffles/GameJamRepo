@@ -5,8 +5,8 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public static Game Instance { get; private set; } = null;
+    public GameObject player; 
     public int LevelWidth;
-    public Camera camera;
 
     private void Awake()
     {
