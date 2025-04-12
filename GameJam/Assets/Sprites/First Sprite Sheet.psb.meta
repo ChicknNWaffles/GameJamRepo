@@ -94,6 +94,27 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
+  - name: Player LO
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2060
+      y: 4
+      width: 1997
+      height: 985
+    spriteID: cd0dfc4c2a3451146b999c0b45bd6681
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 2060, y: 4}
+    spritePosition: {x: 46, y: 30}
   - name: Paper
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -346,7 +367,7 @@ ScriptedImporter:
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
-    isVisible: 0
+    isVisible: 1
   - name: UfoLO
     spriteName: UfoLO
     isGroup: 0
@@ -356,7 +377,7 @@ ScriptedImporter:
     mosaicPosition: {x: 2060, y: 4}
     flatten: 0
     isImported: 0
-    isVisible: 1
+    isVisible: 0
   - name: Eye Enemies
     spriteName: 
     isGroup: 0
@@ -368,15 +389,15 @@ ScriptedImporter:
     isImported: 0
     isVisible: 0
   - name: Player LO
-    spriteName: 
+    spriteName: Player LO
     isGroup: 0
     parentIndex: 15
     spriteID: cd0dfc4c2a3451146b999c0b45bd6681
     layerID: -1319916060
-    mosaicPosition: {x: 0, y: 0}
+    mosaicPosition: {x: 2060, y: 4}
     flatten: 0
-    isImported: 0
-    isVisible: 0
+    isImported: 1
+    isVisible: 1
   - name: Paper
     spriteName: Paper
     isGroup: 0
