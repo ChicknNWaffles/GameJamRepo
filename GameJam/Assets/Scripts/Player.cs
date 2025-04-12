@@ -60,8 +60,8 @@ public class Player : MonoBehaviour
     }
 
     void Jump() {
-        // if on the ground and in from side mode
-        if (OnTheGround && !Mode) { 
+        // if on the ground and in from side mode and if can jump
+        if (OnTheGround && !Mode && CanJump) { 
             float x = Target.x;
             float y = Target.y;
             // move the target up
@@ -72,17 +72,26 @@ public class Player : MonoBehaviour
     }
 
     void GoLeft() { 
-        
+        if (CanGoLeft) {
+            float y = Target.y;
+            float z = Target.z;
+            // move the target to the left
+            float curX = Target.x;
+            float newX = curX - 10;
+            Target = new(newX, y, z);
+        }
     }
 
     void GoRight() { 
-
+        if (CanGoLeft) {
+            float y = Target.y;
+            float z = Target.z;
+            // move the target to the right
+            float curX = Target.x;
+            float newX = curX + 10;
+            Target = new(newX, y, z);
+        }
     }
-
-    void Crouch() { 
-
-    }
-
 
     #endregion
 
