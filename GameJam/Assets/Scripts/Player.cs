@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     }
 
     void GoRight() { 
-        if (CanGoLeft) {
+        if (CanGoRight) {
             float y = Target.y;
             float z = Target.z;
             // move the target to the right
