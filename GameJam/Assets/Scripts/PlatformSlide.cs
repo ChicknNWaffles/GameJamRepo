@@ -10,10 +10,14 @@ public class PlatformSlide : MonoBehaviour
     public float lerpFactor = .9f;
     public EaseChoice easeChoice = EaseChoice.InOutSine;
 
+    public ContactFilter2D touchFilter;
+
     Vector3 start;
     Vector3 moveTo;
     float curDist;
     float distBetweenPoints;
+
+    protected GameObject player;
 
     float easeInOutSine(float x)
     {
@@ -57,6 +61,29 @@ public class PlatformSlide : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, moveTo, moveSpeed * Time.deltaTime * ease((distBetweenPoints - lerpFactor*curDist) / distBetweenPoints));//Mathf.Lerp(lerpFactor, 1f, curDist/distBetweenPoints));
 
         if (curDist < .01f) moveTo = moveTo == start ? otherPos.position : start;
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            bool onPlatform = collision.gameObject.GetComponent<PlayerPhysics>().IsGroundedTo(GetComponent<Collider2D>());
+
+            if (onPlatform)
+            {
+                collision.gameObject.transform.SetParent(transform, true);
+                player = collision.gameObject;
+            }
+        }
+    }
+
+    protected virtual void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.transform.SetParent(null);
+            player = null;
+        }
     }
 }
 
