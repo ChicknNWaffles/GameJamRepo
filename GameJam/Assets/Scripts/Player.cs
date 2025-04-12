@@ -6,16 +6,19 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; } = null;
+    public float Speed;
+    public float JumpHeight;
     private bool Jumping;
     private bool Mode; // false = side, true = top
-    private float Speed;
     private bool CanGoLeft = true;
     private bool CanGoRight = true;
     private bool CanGoUp = true;
     private bool CanGoDown = true;
     private bool CanJump = true;
-    private Vector3 position;
-    private int health;
+    private Transform transform;
+    private int Health;
+    private Vector3 Target;
+    private bool OnTheGround = true;
 
     private void Awake() {
         if (Instance == null) {
@@ -25,19 +28,34 @@ public class Player : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
-        position = gameObject.transform.position;
+        transform = gameObject.transform;
+        Target = transform.position;
         
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+        // apply gravity
+        Gravity();
+        // move the player towards the target
+        transform.position = Vector3.MoveTowards(transform.position, Target, Speed * Time.deltaTime);
+        // if we've reached the target, and the player is jumping, stop jumping, and let gravity take over
+        if (Jumping && transform.position == Target) {
+            Jumping = false;
+        }
     }
 
     #region movement
     void Gravity() {
-        if (!Jumping) { 
+        // if not currently on our way up with a jump, not in top down mode, and not currently
+        // in contact with the ground
+        if (!Jumping && Mode && !OnTheGround) {
+            float x = Target.x;
+            float y = Target.y;
+            // move the target down
+            float curZ = Target.z;
+            float newZ = curZ + 1;
+            Target = new (x, y, newZ);
         }
     }
 
@@ -46,7 +64,7 @@ public class Player : MonoBehaviour
     }
 
     void GoLeft() { 
-
+        
     }
 
     void GoRight() { 
@@ -57,32 +75,43 @@ public class Player : MonoBehaviour
 
     }
 
+
+    #endregion
+
+
+    #region collision
+
     private void OnCollisionEnter2D(Collision2D collision){
         if (collision.gameObject.tag == "collide") {
             // if colliding on the left
-            if (position.x <= collision.gameObject.transform.position.x) {
+            if (transform.position.x <= collision.gameObject.transform.position.x) {
                 // disable movement to the left
                 CanGoLeft = false;
             }
             // if colliding on the right
-            else if (position.x > collision.gameObject.transform.position.x) {
+            else if (transform.position.x > collision.gameObject.transform.position.x) {
                 // disable movement to the right
                 CanGoRight = false;
             }
             // if colliding above
-            else if (position.y <= collision.gameObject.transform.position.y) {
+            else if (transform.position.y <= collision.gameObject.transform.position.y) {
                 // disable movement upward
                 CanGoUp = false;
                 // disable jumping
                 CanJump = false;
             }
             // if colliding below
-            else if (position.y > collision.gameObject.transform.position.y) {
+            else if (transform.position.y > collision.gameObject.transform.position.y) {
                 // disable movement downward
                 CanGoDown = false;
+                // let the program know you're on the ground if in side mode
+                if (!Mode) {
+                    OnTheGround = true;
+                }
             }
         }
     }
+
 
     private void OnCollisionExit2D(Collision2D collision){
         if (collision.gameObject.tag == "collide") {
@@ -107,12 +136,18 @@ public class Player : MonoBehaviour
             else if (position.y > collision.gameObject.transform.position.y) {
                 //enable movement downward
                 CanGoDown = true;
+                // let the program know you're not on the ground if in side mode
+                if (!Mode)
+                {
+                    OnTheGround = false;
+                }
             }
         }
     }
 
-
     #endregion
+
+
 
 
 }
