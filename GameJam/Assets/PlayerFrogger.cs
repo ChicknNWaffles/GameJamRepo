@@ -96,6 +96,10 @@ public class PlayerFrogger : MonoBehaviour
         if (!overGround && grounded)
         {
             print("we should be dead!");
+            if (GetComponent<Health>() != null)
+            {
+                GetComponent<Health>().Die();
+            }
         }
     }
 
