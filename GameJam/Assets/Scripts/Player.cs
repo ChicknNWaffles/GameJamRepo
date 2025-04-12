@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private Transform transform;
     private int Health;
     private Vector3 Target;
-    private bool OnTheGround = true;
+    private bool OnTheGround = false;
     private bool PanningLeft = false;
     private bool PanningRight = false;
 
