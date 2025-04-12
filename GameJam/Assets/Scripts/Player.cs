@@ -18,7 +18,10 @@ public class Player : MonoBehaviour
     private Transform transform;
     private int Health;
     private Vector3 Target;
-    private bool OnTheGround = false;
+    private bool OnTheGround = true;
+    private bool PanningLeft = false;
+    private bool PanningRight = false;
+
 
     private void Awake() {
         if (Instance == null) {
@@ -35,6 +38,8 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        // check if it needs to move the player or the camera;
+        CheckIfPanning();
         // apply gravity
         Gravity();
         // respond to player input
@@ -70,11 +75,30 @@ public class Player : MonoBehaviour
         }
     }
 
+    void CheckIfPanning() {
+        if (Game.Instance.camera.transform.position.x <= 0 && transform.position.x >= Game.Instance.camera.transform.position.x - 3) {
+            print("camera all the way left, player in right");
+            PanningLeft = false;
+            PanningRight = true;
+        }else if (Game.Instance.camera.transform.position.x >= Game.Instance.LevelWidth && transform.position.x <= Game.Instance.camera.transform.position.x + 3) {
+            print("camera all the way right, player in left");
+            PanningLeft = true;
+            PanningRight = false;
+        }else if (Game.Instance.camera.transform.position.x <= 0 || Game.Instance.camera.transform.position.x >= Game.Instance.LevelWidth){
+            print("camera all the way in one extreem, but player not in oposite side");
+            PanningLeft = false;
+            PanningRight = false;
+        }else{
+            print("camera not at extreme");
+            PanningLeft = true;
+            PanningRight = true;
+        }
+    }
+
     void Gravity() {
         // if not currently on our way up with a jump, not in top down mode, and not currently
         // in contact with the ground
         if (!Jumping && !Mode && !OnTheGround) {
-            print("applying gravity");
             float x = Target.x;
             float z = Target.z;
             // move the target down
@@ -105,8 +129,12 @@ public class Player : MonoBehaviour
             float curX = Target.x;
             float newX = curX - 10;
             Target = new(newX, y, z);
-            print("OldX = " + curX + ", NewX = " + newX);
+            if (PanningLeft){
+                Game.Instance.camera.transform.Translate(Vector3.left * Speed * Time.deltaTime);
+            }
         }
+
+        
     }
 
     void GoRight() { 
@@ -117,7 +145,9 @@ public class Player : MonoBehaviour
             float curX = Target.x;
             float newX = curX + 10;
             Target = new(newX, y, z);
-            print("OldX = " + curX + ", NewX = " + newX);
+            if (PanningRight) {
+                Game.Instance.camera.transform.Translate(Vector3.right * Speed * Time.deltaTime); 
+            }
         }
     }
 
@@ -144,7 +174,6 @@ public class Player : MonoBehaviour
     }
 
     void ResetTarget() {
-        print("resetting target");
         Target = transform.position;
     }
 
@@ -215,6 +244,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        
     }
 
     #endregion

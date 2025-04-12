@@ -5,6 +5,17 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public static Game Instance { get; private set; } = null;
+    public int LevelWidth;
+    public Camera camera;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
