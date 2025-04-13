@@ -1013,6 +1013,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4945765940166926051, guid: c25e65471a105d549adf6898c9542c43, type: 3}
+      propertyPath: projectileDelay
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 6155674923260876403, guid: c25e65471a105d549adf6898c9542c43, type: 3}
       propertyPath: groundFilter.maxNormalAngle
       value: 150

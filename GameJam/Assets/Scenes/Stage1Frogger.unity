@@ -340,6 +340,26 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4322892571006181682, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717963584034881591, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 9167335344762125812, guid: 0c0f5979690d3d5439f8b7cc1c3a4e6a, type: 3}
+    - target: {fileID: 5717963584034881591, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717963584034881591, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717963584034881591, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7089640176855303290, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.49

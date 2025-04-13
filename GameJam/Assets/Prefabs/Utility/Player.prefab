@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4945765940166926051}
   - component: {fileID: 940513035159320836}
   - component: {fileID: 3910690390537562834}
+  - component: {fileID: 5308254430519811790}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -118,7 +119,19 @@ MonoBehaviour:
       m_Calls: []
   onDieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5308254430519811790}
+        m_TargetAssemblyTypeName: PlayerRespawn, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &1558454735877619643
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -180,6 +193,7 @@ MonoBehaviour:
   shootTransform: {fileID: 1036032276275837428}
   shootDir: {x: 0.819152, y: 0.573576, z: 0}
   shootDelay: 0.7
+  projectileDelay: 0.25
   shootForce: 10
 --- !u!70 &940513035159320836
 CapsuleCollider2D:
@@ -214,7 +228,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.96, y: 1.96}
+  m_Size: {x: 0.81, y: 1.9}
   m_Direction: 0
 --- !u!95 &3910690390537562834
 Animator:
@@ -237,6 +251,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5308254430519811790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806318980546704560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063667723763d50478715433d0fbb04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1850694580536686022
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,9 +289,9 @@ Transform:
   m_GameObject: {fileID: 1850694580536686022}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -0.995, z: 0}
+  m_LocalScale: {x: 0.39, y: 0.39, z: 0.39}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3582124303636951718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -347,9 +373,9 @@ Transform:
   m_GameObject: {fileID: 2347907323619817759}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -0.995, z: 0}
+  m_LocalScale: {x: 0.39, y: 0.39, z: 0.39}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3582124303636951718}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -430,7 +456,7 @@ Transform:
   m_GameObject: {fileID: 7148195846332261436}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 0, z: 0}
+  m_LocalPosition: {x: 1.38, y: 0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
