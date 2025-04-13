@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5717963584034881591}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,9 +97,10 @@ GameObject:
   - component: {fileID: 6704763422030396032}
   - component: {fileID: 5836824326337080454}
   - component: {fileID: 8559528003071642237}
+  - component: {fileID: 3309898814496209769}
   m_Layer: 0
   m_Name: PlayerFrogger
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +220,31 @@ MonoBehaviour:
       m_Calls: []
   onDieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3309898814496209769}
+        m_TargetAssemblyTypeName: PlayerRespawn, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3309898814496209769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820171091375134120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 063667723763d50478715433d0fbb04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4322892571006181682
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +257,7 @@ GameObject:
   - component: {fileID: 479853141230293045}
   m_Layer: 0
   m_Name: Circle (1)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
