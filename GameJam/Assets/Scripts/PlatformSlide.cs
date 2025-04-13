@@ -10,6 +10,8 @@ public class PlatformSlide : MonoBehaviour
     [Tooltip("Keep this smaller than 1 for responsive movement")]
     public float lerpFactor = .9f;
     public EaseChoice easeChoice = EaseChoice.InOutSine;
+    public bool flip;
+    public bool flippedOnStart;
 
     public ContactFilter2D touchFilter;
 
@@ -17,6 +19,8 @@ public class PlatformSlide : MonoBehaviour
     Vector3 moveTo;
     float curDist;
     float distBetweenPoints;
+
+    private float startScale;
 
     protected GameObject player;
 
@@ -48,6 +52,8 @@ public class PlatformSlide : MonoBehaviour
     {
         if (otherPos == null) otherPos = transform;
 
+        startScale = transform.localScale.x;
+
         start = transform.position;
         distBetweenPoints = Vector3.Distance(start, otherPos.position);
     }
@@ -62,6 +68,29 @@ public class PlatformSlide : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, moveTo, moveSpeed * Time.deltaTime * ease((distBetweenPoints - lerpFactor*curDist) / distBetweenPoints));//Mathf.Lerp(lerpFactor, 1f, curDist/distBetweenPoints));
 
         if (curDist < .01f) moveTo = moveTo == start ? otherPos.position : start;
+
+        if (flip && moveTo == start)
+        {
+            if (flippedOnStart)
+            {
+                transform.localScale = new Vector2(startScale, transform.localScale.y);
+            }
+            else
+            {
+                transform.localScale = new Vector2(-startScale, transform.localScale.y);
+            }
+        }
+        else
+        {
+            if (flippedOnStart)
+            {
+                transform.localScale = new Vector2(-startScale, transform.localScale.y);
+            }
+            else
+            {
+                transform.localScale = new Vector2(startScale, transform.localScale.y);
+            }
+        }
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
@@ -80,6 +109,8 @@ public class PlatformSlide : MonoBehaviour
 
     protected virtual void OnTriggerStay2D(Collider2D collision)
     {
+        if (flip) return;
+
         if (collision.gameObject.tag == "Player")
         {
             bool onPlatform = collision.gameObject.GetComponent<PlayerFrogger>().grounded;
@@ -103,6 +134,8 @@ public class PlatformSlide : MonoBehaviour
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
+        if (flip) return;
+
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.transform.SetParent(null);

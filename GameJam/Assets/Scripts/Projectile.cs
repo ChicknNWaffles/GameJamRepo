@@ -30,18 +30,22 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<IDamageable>() != null)
+        var damageObject = collision.gameObject.GetComponentInChildren<IDamageable>() != null ? collision.gameObject.GetComponentInChildren<IDamageable>() : collision.gameObject.GetComponentInParent<IDamageable>();
+
+        if (damageObject != null)
         {
-            collision.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
+            damageObject.TakeDamage(damage);
         }
         Die();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<IDamageable>() != null)
+        var damageObject = collision.gameObject.GetComponentInChildren<IDamageable>() != null ? collision.gameObject.GetComponentInChildren<IDamageable>() : collision.gameObject.GetComponentInParent<IDamageable>();
+
+        if (damageObject != null)
         {
-            collision.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
+            damageObject.TakeDamage(damage);
             Die();
         }
     }
