@@ -357,11 +357,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1328617176 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1820171091375134120, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
-  m_PrefabInstance: {fileID: 6710240979917813214}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1437167895
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,27 +781,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8559528003071642237, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
       propertyPath: onDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8559528003071642237, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
       propertyPath: onDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1328617176}
+      objectReference: {fileID: 0}
     - target: {fileID: 8559528003071642237, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
       propertyPath: onDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8559528003071642237, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
+      propertyPath: onDieEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559528003071642237, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
       propertyPath: onDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8559528003071642237, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
       propertyPath: onDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8559528003071642237, guid: 09dd47d96670a444c9c9e7ca4d6ca3a3, type: 3}
       propertyPath: onDieEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
