@@ -901,12 +901,12 @@ ScriptedImporter:
     isImported: 0
     isVisible: 0
   - name: 1
-    spriteName: 
+    spriteName: 1
     isGroup: 0
     parentIndex: 34
-    spriteID: 4148a02cc9914cb42b1b4d3983ec0544
-    layerID: -634785335
-    mosaicPosition: {x: 0, y: 0}
+    spriteID: 2a8a035cd682a0f4c94aae80af39b371
+    layerID: 372029325
+    mosaicPosition: {x: 468, y: 530}
     flatten: 0
     isImported: 0
     isVisible: 1

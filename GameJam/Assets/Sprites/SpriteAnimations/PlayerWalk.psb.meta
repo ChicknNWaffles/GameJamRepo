@@ -101,8 +101,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 1308
+      x: 3035
+      y: 317
       width: 2027
       height: 29
     spriteID: 5d6ea9f4eb564f84880c8f3f45dcd5e7
@@ -113,8 +113,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 1308}
-    spritePosition: {x: 98, y: 247}
+    uvTransform: {x: 3035, y: 317}
+    spritePosition: {x: 244, y: 270}
   - name: 4
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -241,27 +241,6 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 2196, y: 4}
     spritePosition: {x: 276, y: 287}
-  - name: 1
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 3035
-      y: 317
-      width: 165
-      height: 712
-    spriteID: 98f501062eef0ed4ea37be6047b4d628
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 3035, y: 317}
-    spritePosition: {x: 244, y: 270}
   - name: Paper
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -413,8 +392,8 @@ ScriptedImporter:
     spriteName: 1
     isGroup: 0
     parentIndex: 2
-    spriteID: 98f501062eef0ed4ea37be6047b4d628
-    layerID: -634785337
+    spriteID: 5d6ea9f4eb564f84880c8f3f45dcd5e7
+    layerID: 372029325
     mosaicPosition: {x: 3035, y: 317}
     flatten: 0
     isImported: 1
