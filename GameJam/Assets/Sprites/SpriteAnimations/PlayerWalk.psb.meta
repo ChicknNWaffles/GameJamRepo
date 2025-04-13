@@ -101,8 +101,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 6066
-      y: -674
+      x: 9097
+      y: -1665
       width: 2027
       height: 29
     spriteID: 497bb2a8d8d7b6e49a4be16dafc413de
@@ -199,6 +199,27 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 2838, y: 317}
     spritePosition: {x: 260, y: 280}
+  - name: 1b
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 3035
+      y: 1037
+      width: 0
+      height: 0
+    spriteID: fa15f103e8697494fa4a8071e754d2af
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 3035, y: 1037}
+    spritePosition: {x: 0, y: 1296}
   - name: 1a
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -220,6 +241,27 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 2196, y: 4}
     spritePosition: {x: 276, y: 287}
+  - name: 1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 6066
+      y: -674
+      width: 2027
+      height: 29
+    spriteID: 497bb2a8d8d7b6e49a4be16dafc413de
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 3035, y: 317}
+    spritePosition: {x: 244, y: 270}
   - name: Paper
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -344,6 +386,16 @@ ScriptedImporter:
     spriteID: 94609d6cea16d514fb9babca8714a15c
     layerID: 372029328
     mosaicPosition: {x: 2838, y: 317}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: 1b
+    spriteName: 1b
+    isGroup: 0
+    parentIndex: 2
+    spriteID: fa15f103e8697494fa4a8071e754d2af
+    layerID: 1093630487
+    mosaicPosition: {x: 3035, y: 1037}
     flatten: 0
     isImported: 1
     isVisible: 1
