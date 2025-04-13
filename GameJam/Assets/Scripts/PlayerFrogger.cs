@@ -63,6 +63,7 @@ public class PlayerFrogger : MonoBehaviour
             grounded = false;
             jumpScale = transform.localScale;
             rb.AddForce(lastMove * jumpForce, ForceMode2D.Impulse);
+            transform.SetParent(null);
         }
     }
 
