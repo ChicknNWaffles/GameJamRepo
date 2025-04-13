@@ -78,7 +78,30 @@ public class PlatformSlide : MonoBehaviour
         }
     }
 
+    protected virtual void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            bool onPlatform = collision.gameObject.GetComponent<PlayerFrogger>().grounded;
+
+            if (onPlatform && collision.gameObject.transform.parent != transform)
+            {
+                collision.gameObject.transform.SetParent(transform, true);
+                player = collision.gameObject;
+            }
+        }
+    }
+
     protected virtual void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.transform.SetParent(null);
+            player = null;
+        }
+    }
+
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {

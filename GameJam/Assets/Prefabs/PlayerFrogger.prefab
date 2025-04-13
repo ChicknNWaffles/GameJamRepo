@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accelerationSpeed: 500
   maxSpeed: 10
-  jumpForce: 500
+  jumpForce: 200
   jumpTime: 0.5
   grounded: 1
   forceMode: 0

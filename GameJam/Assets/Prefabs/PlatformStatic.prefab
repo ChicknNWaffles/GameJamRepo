@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4061597012268545076}
   m_Layer: 6
   m_Name: PlatformStatic
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,7 +42,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 649206143567761987}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 223cb9a3807c3924f85bb0a0af81b16d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 336714059988576886}
   m_Layer: 6
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

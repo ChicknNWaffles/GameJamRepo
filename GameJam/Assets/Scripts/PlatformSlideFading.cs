@@ -22,7 +22,8 @@ public class PlatformSlideFading : PlatformSlide
 
     private void OnFaded()
     {
-        col.isTrigger = true;
+        //col.isTrigger = true;
+        col.enabled = false;
         if (player)
         {
             player.transform.SetParent(null);
@@ -46,7 +47,7 @@ public class PlatformSlideFading : PlatformSlide
         base.Start();
 
         sprite = GetComponentInChildren<SpriteRenderer>();
-        col = GetComponent<Collider2D>();
+        col = GetComponentInChildren<Collider2D>();
     }
 
     private void StartFading()
@@ -78,7 +79,8 @@ public class PlatformSlideFading : PlatformSlide
             else if (Time.time > fadeEnd)
             {
                 fadeAmount = Mathf.MoveTowards(fadeAmount, 0f, fadeSpeed * Time.deltaTime);
-                col.isTrigger = false;
+                col.enabled = true;
+                //col.isTrigger = false;
             }
         }
         else
@@ -93,7 +95,8 @@ public class PlatformSlideFading : PlatformSlide
             if (fading == false && (fadeAmount != 1f || Time.time > fadeEnd))
             { 
                 fadeAmount = Mathf.MoveTowards(fadeAmount, 0f, fadeSpeed * Time.deltaTime);
-                col.isTrigger = false;
+                //col.isTrigger = false;
+                col.enabled = true;
             }
 
             fading = false;
@@ -115,6 +118,26 @@ public class PlatformSlideFading : PlatformSlide
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (collision.gameObject.tag != "Player") return;
+
+        if (fadeOverTime)
+        {
+            StartFading();
+        }
+    }
+
+    protected void OnTriggerEnter2D(Collider2D collision)
+    {
+        //base.OnTriggerEnter2D(collision);
+        if (!fadeOverTime && !fading && collision.gameObject.tag == "Player")
+        {
+            fading = true;
+        }
+    }
+
+    protected override void OnTriggerStay2D(Collider2D collision)
+    {
+        base.OnTriggerStay2D(collision);
         if (collision.gameObject.tag != "Player") return;
 
         if (fadeOverTime)
