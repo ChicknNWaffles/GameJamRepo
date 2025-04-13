@@ -99,7 +99,10 @@ public class CameraTracking : MonoBehaviour{
             float z = transform.position.z;
             Vector3 newPos = new(x, y, z);
             transform.position = newPos;
-            if (AttachedToCamera != null) { 
+            if (AttachedToCamera != null) {
+                y = AttachedToCamera.transform.position.y;
+                z = AttachedToCamera.transform.position.z;
+                newPos = new(x, y, z);
                 AttachedToCamera.transform.position = newPos;
             }
         }
