@@ -94,10 +94,31 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: PlayerSprite
+  - name: PlayerSprite Copy
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 200
+      y: 4
+      width: 175
+      height: 351
+    spriteID: 22fdfaef5ca22354caf9cd289b6bcbb1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 200, y: 4}
+    spritePosition: {x: 930, y: 341}
+  - name: PlayerSprite
+    originalName: 
+    pivot: {x: 0.50318205, y: 0.010238008}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -337,6 +358,16 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
+  - name: PlayerSprite Copy
+    spriteName: PlayerSprite Copy
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 22fdfaef5ca22354caf9cd289b6bcbb1
+    layerID: 1384090867
+    mosaicPosition: {x: 200, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: PlayerSprite
     spriteName: PlayerSprite
     isGroup: 0
@@ -370,7 +401,7 @@ ScriptedImporter:
   - name: UfoLO
     spriteName: UfoLO
     isGroup: 0
-    parentIndex: 17
+    parentIndex: 18
     spriteID: 447cbc25c2c1f434f84127887e82dac3
     layerID: 116309499
     mosaicPosition: {x: 2060, y: 4}
@@ -380,7 +411,7 @@ ScriptedImporter:
   - name: Eye Enemies
     spriteName: 
     isGroup: 0
-    parentIndex: 17
+    parentIndex: 18
     spriteID: 998db087ee7fb5a49bf229a5c9e1c792
     layerID: 1167301345
     mosaicPosition: {x: 0, y: 0}
@@ -390,7 +421,7 @@ ScriptedImporter:
   - name: Player LO
     spriteName: Player LO
     isGroup: 0
-    parentIndex: 17
+    parentIndex: 18
     spriteID: cd0dfc4c2a3451146b999c0b45bd6681
     layerID: -1319916060
     mosaicPosition: {x: 2060, y: 4}
