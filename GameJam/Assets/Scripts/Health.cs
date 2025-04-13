@@ -29,6 +29,11 @@ public class Health : MonoBehaviour, IDamageable
         onDieEvent.Invoke();
     }
 
+    public void ResetHealth()
+    {
+        HealthAmount = startingHealth;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
