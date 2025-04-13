@@ -54,7 +54,7 @@ public class PlatformSlideFading : PlatformSlide
     {
         if (fadeAmount == 1f) return;
 
-        fadeAmount = Mathf.MoveTowards(fadeAmount, 1f, fadeSpeed * Time.deltaTime);
+        fadeAmount = Mathf.MoveTowards(fadeAmount, 1f, fadeSpeed * Time.fixedDeltaTime);
         fading = true;
     }
 
