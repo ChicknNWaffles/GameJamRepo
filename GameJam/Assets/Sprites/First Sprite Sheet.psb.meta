@@ -94,28 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: Player LO
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 2060
-      y: 4
-      width: 1997
-      height: 985
-    spriteID: cd0dfc4c2a3451146b999c0b45bd6681
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 2060, y: 4}
-    spritePosition: {x: 46, y: 30}
-  - name: Paper
+  - name: PlayerSprite
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -124,9 +103,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 2048
-      height: 1024
-    spriteID: 848ba0db4c9b31e4aa2b70b333874339
+      width: 188
+      height: 502
+    spriteID: 132dd35a113f1d2428705a23dd6f6156
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -135,7 +114,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-    spritePosition: {x: 0, y: 0}
+    spritePosition: {x: 930, y: 190}
   characterData:
     bones: []
     parts: []
@@ -298,12 +277,12 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 0
-  - name: Standard Sprites
+  - name: Scrapped Sprites
     spriteName: 
     isGroup: 1
     parentIndex: -1
-    spriteID: 53c9d91ece087984092afd1f71b04f67
-    layerID: -1932924183
+    spriteID: d29103328a793b74cbf1e5776755afa8
+    layerID: -1419034538
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
@@ -357,6 +336,26 @@ ScriptedImporter:
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 0
+    isVisible: 1
+  - name: PlayerSprite
+    spriteName: PlayerSprite
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 132dd35a113f1d2428705a23dd6f6156
+    layerID: -1217732326
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: GroundTemp
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: b97d5b298c6ca0e4d8b53119f711c0de
+    layerID: -983155399
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
     isVisible: 0
   - name: LO
     spriteName: 
@@ -367,11 +366,11 @@ ScriptedImporter:
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
-    isVisible: 1
+    isVisible: 0
   - name: UfoLO
     spriteName: UfoLO
     isGroup: 0
-    parentIndex: 15
+    parentIndex: 17
     spriteID: 447cbc25c2c1f434f84127887e82dac3
     layerID: 116309499
     mosaicPosition: {x: 2060, y: 4}
@@ -381,7 +380,7 @@ ScriptedImporter:
   - name: Eye Enemies
     spriteName: 
     isGroup: 0
-    parentIndex: 15
+    parentIndex: 17
     spriteID: 998db087ee7fb5a49bf229a5c9e1c792
     layerID: 1167301345
     mosaicPosition: {x: 0, y: 0}
@@ -391,12 +390,12 @@ ScriptedImporter:
   - name: Player LO
     spriteName: Player LO
     isGroup: 0
-    parentIndex: 15
+    parentIndex: 17
     spriteID: cd0dfc4c2a3451146b999c0b45bd6681
     layerID: -1319916060
     mosaicPosition: {x: 2060, y: 4}
     flatten: 0
-    isImported: 1
+    isImported: 0
     isVisible: 1
   - name: Paper
     spriteName: Paper
@@ -406,8 +405,8 @@ ScriptedImporter:
     layerID: -1779142660
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
-    isImported: 1
-    isVisible: 1
+    isImported: 0
+    isVisible: 0
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
   importFileNodeState: 1
