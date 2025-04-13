@@ -172,9 +172,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688c31736b0a8474880a9df1a209218a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
-  shootTransform: {fileID: 0}
+  projectilePrefab: {fileID: 2870209790818404078, guid: f7174dd5a9d2cdf45841ad29cb66ec0a, type: 3}
+  shootTransform: {fileID: 1036032276275837428}
+  shootDir: {x: 0, y: 0, z: 0}
   shootDelay: 0.7
+  shootForce: 10
 --- !u!1 &7148195846332261436
 GameObject:
   m_ObjectHideFlags: 0
