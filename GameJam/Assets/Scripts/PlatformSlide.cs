@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlatformSlide : MonoBehaviour
 {
@@ -67,7 +68,7 @@ public class PlatformSlide : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            bool onPlatform = collision.gameObject.GetComponent<PlayerPhysics>().IsGroundedTo(GetComponent<Collider2D>());
+            bool onPlatform = collision.gameObject.GetComponent<PlayerPhysics>().IsGroundedTo(GetComponentInChildren<Collider2D>());
 
             if (onPlatform)
             {
